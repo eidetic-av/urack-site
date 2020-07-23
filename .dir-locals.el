@@ -5,4 +5,6 @@
   (org-hugo-default-static-subdirectory-for-externals . "urack/static/"))
  ("org/"
   (org-mode
-   (eval org-hugo-auto-export-mode))))
+   (eval org-hugo-auto-export-mode)))
+
+(setq hugo-project-dir "/remote/micro/net/urack/hugo/")
