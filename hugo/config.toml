@@ -1,0 +1,15 @@
+baseURL = "https://eidetic.net.au/urack/"
+languageCode = "en-au"
+title = "URack"
+theme = "book"
+pluralizelisttitles = false
+
+[menu]
+# [[menu.before]]
+[[menu.after]]
+    name = "Github"
+    url = "https://github.com/eidetic-av"
+
+[params]
+    BookSection = '*'
+    BookToc = false
