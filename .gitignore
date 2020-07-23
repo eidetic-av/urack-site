@@ -4,5 +4,6 @@
 tmp/
 
 /hugo/public
+/hugo/content
 /hugo/resources
 /hugo/static
