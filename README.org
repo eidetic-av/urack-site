@@ -1,0 +1,8 @@
+#+TITLE: Readme
+
+Website for the URack project — live at [[https://eidetic.net.au/urack]].
+
+Pages on this site are written in org-mode and transpiled into markdown using
+[[https://ox-hugo.scripter.co/][ox-hugo]]. Static HTML and CSS is then generated using [[https://github.com/gohugoio/hugo][hugo]].
+
+The theme is based on [[https://github.com/alex-shpak/hugo-book][hugo-book]].
