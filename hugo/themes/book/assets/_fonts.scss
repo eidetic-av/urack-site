@@ -1,35 +1,51 @@
-/* roboto-300italic - latin */
 @font-face {
-  font-family: 'Roboto';
+  font-family: 'Barlow';
   font-style: italic;
-  font-weight: 300;
+  font-weight: 400;
   font-display: swap;
-  src: local('Roboto Light Italic'), local('Roboto-LightItalic'),
-       url('fonts/roboto-v19-latin-300italic.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-       url('fonts/roboto-v19-latin-300italic.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  src: local('Barlow Italic'), local('Barlow-Italic'),
+       url('fonts/Barlow-Italic.woff2') format('woff2'),
+       url('fonts/Barlow-Italic.woff') format('woff');
 }
-/* roboto-regular - latin */
 @font-face {
-  font-family: 'Roboto';
+  font-family: 'Barlow';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: local('Roboto'), local('Roboto-Regular'),
-       url('fonts/roboto-v19-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-       url('fonts/roboto-v19-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  src: local('Barlow'), local('Barlow-Regular'),
+       url('fonts/Barlow-Regular.woff2') format('woff2'),
+       url('fonts/Barlow-Regular.woff') format('woff');
 }
-/* roboto-700 - latin */
 @font-face {
-  font-family: 'Roboto';
+  font-family: 'Barlow';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: local('Barlow Light'), local('Barlow-Light'),
+       url('fonts/Barlow-Light.woff2') format('woff2'),
+       url('fonts/Barlow-Light.woff') format('woff');
+}
+@font-face {
+  font-family: 'Barlow Bold';
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: local('Roboto Bold'), local('Roboto-Bold'),
-       url('fonts/roboto-v19-latin-700.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-       url('fonts/roboto-v19-latin-700.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  src: local('Barlow Bold'), local('Barlow-Bold'),
+       url('fonts/Barlow-Bold.woff2') format('woff2'),
+       url('fonts/Barlow-Bold.woff') format('woff');
 }
 
-/* roboto-mono-regular - latin */
+@font-face {
+  font-family: 'Techna Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  font-feature-settings: 'ss01';
+  src: local('Techna Sans'), local('TechnaSans-Regular'),
+       url('fonts/TechnaSans-Regular.woff2') format('woff2'),
+       url('fonts/TechnaSans-Regular.woff') format('woff');
+}
+
 @font-face {
   font-family: 'Roboto Mono';
   font-style: normal;
@@ -41,7 +57,28 @@
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Barlow', sans-serif;
+}
+
+p {
+  font-size: 1.2rem;
+  font-weight: 300;
+}
+
+strong {
+  font-family: 'Barlow Bold', 'Barlow', sans-serif;
+}
+
+nav {
+  font-size: 1.1rem;
+}
+
+h1, h2, h3 {
+  font-family: 'Techna Sans', sans-serif;
+}
+
+h2 {
+  font-size: 2.2rem;
 }
 
 code {

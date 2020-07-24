@@ -4,12 +4,12 @@ title = "URack"
 theme = "book"
 pluralizelisttitles = false
 
+[params]
+    BookSection = '*'
+    BookToc = false
+
 [menu]
-# [[menu.before]]
 [[menu.after]]
     name = "Github"
     url = "https://github.com/eidetic-av"
 
-[params]
-    BookSection = '*'
-    BookToc = false

@@ -13,7 +13,7 @@
   {{ $collapsed := .Section.Params.bookCollapseSection }}
 
   {{ if or $self $ancestor (not $collapsed) }}
-  <ul>
+  <ul id="{{ .Section.Title }}">
     {{ range (where .Section.Pages "Params.bookhidden" "ne" true) }}
       {{ if .IsSection }}
         <li {{- if .Params.BookFlatSection }} class="book-section-flat" {{ end -}}>

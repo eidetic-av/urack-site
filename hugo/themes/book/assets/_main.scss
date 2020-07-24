@@ -104,6 +104,10 @@ ul.pagination {
     padding: $padding-16;
     background: $body-background;
 
+    a.active {
+      color: $color-nav-active;
+    }
+
     @include fixed;
   }
 

@@ -2,4 +2,44 @@
 
 @import "plugins/dark";
 
-$container-max-width: 70rem;
+// Colours
+$body-background: #1c1e26;
+$color-nav-active: #faa463;
+$color-link: #b877db;
+
+// Layout
+$container-max-width: 60rem;
+$padding-figure: 2rem;
+
+// css overrides
+.book-brand {
+    font-size: 1.8rem;
+}
+#book-search-input {
+    background: #232530;
+}
+.anchor {
+    display: none;
+}
+
+// re-order the nav-list
+ul#URack {
+    display: flex;
+    flex-direction: column;
+
+    li {
+        margin: .8em 0;
+    }
+    // set "Overview" first
+    li:nth-child(3) {
+        order: 1;
+    }
+    // set "Collection" second
+    li:nth-child(1) {
+        order: 2;
+    }
+    // set "Development" third
+    li:nth-child(2) {
+        order: 3;
+    }
+}
