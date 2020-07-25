@@ -21,4 +21,20 @@
     </a>
   </div>
 {{ end }}
+
+  <div class="flex flex-wrap justify-between"
+       style="width: 100%; margin: 1rem 0;">
+      <div>
+      {{ if .NextInSection }}
+          <a href="{{ .NextInSection.Permalink }}">
+          Previous — {{ .NextInSection.Title }}</a>
+      {{ end }}
+      </div>
+      <div>
+      {{ if .PrevInSection }}
+          <a href="{{ .PrevInSection.Permalink }}">
+          Next — {{ .PrevInSection.Title }}</a>
+      {{ end }}
+      </div>
+  </div>
 </div>
