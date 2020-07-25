@@ -4,6 +4,12 @@ title = "URack"
 theme = "book"
 pluralizelisttitles = false
 
+pygmentsCodeFences = true
+pygmentsUseClasses = true
+
+[markup.goldmark.renderer]
+    unsafe = true
+
 [params]
     BookSection = '*'
     BookToc = false
