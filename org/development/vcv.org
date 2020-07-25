@@ -1,6 +1,6 @@
-#+TITLE: VCV Rack SDK
+#+TITLE: The VCV Rack SDK
 #+HUGO_SECTION: development
-#+HUGO_WEIGHT: 100
+#+HUGO_WEIGHT: 200
 #+HUGO_BASE_DIR: ../../hugo/
 
 * The VCV Rack SDK

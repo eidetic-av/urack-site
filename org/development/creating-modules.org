@@ -1,6 +1,6 @@
 #+TITLE: Creating Modules
 #+HUGO_SECTION: development
-#+HUGO_WEIGHT: 1
+#+HUGO_WEIGHT: 100
 #+HUGO_BASE_DIR: ../../hugo/
 
 * Creating URack Modules

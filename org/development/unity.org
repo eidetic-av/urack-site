@@ -1,6 +1,58 @@
-#+TITLE: Unity Package
+#+TITLE: The Unity Package
 #+HUGO_SECTION: development
-#+HUGO_WEIGHT: 200
+#+HUGO_WEIGHT: 300
 #+HUGO_BASE_DIR: ../../hugo/
+#+HUGO_CUSTOM_FRONT_MATTER: :bookToC true
 
 * The Unity Package
+
+** Installation
+
+Create a new Unity project that uses the *Universal Render Pipeline*, and import
+the URack package by adding the following git repository in the package manager:
+
+#+BEGIN_LINK
+https://github.com/eidetic-av/URack-Unity.git
+#+END_LINK
+
+URack supports only the full .NET Framework runtime, so you need to make sure
+that the *API Compatibility Level* of your project is set to *.NET 4.x*, rather
+than .NET Standard 2.0. You can change this setting in the project's Player
+Settings.
+
+** The UModule Class
+<code class="highlight inline"><span
+class="nc">Eidetic.URack.UModule</span></code> is the base class from which all
+URack modules derive.
+
+If you're familiar with writing C♯ scripts in Unity, the process for creating a
+new module should feel very similar — only instead of extending from
+MonoBehaviour, your new script will extend from UModule, like so:
+
+#+BEGIN_SRC csharp
+using Eidetic.URack;
+
+public float TestFloat = 0;
+
+public class MyModule : UModule
+{
+    // ...
+}
+#+END_SRC
+
+Any public properties declared inside a UModule can be targeted and updated by
+the module's instance inside VCV Rack. Properties that share the same name as a
+parameter defined in the module's corresponding VCV Rack plugin code will be
+automatically connected.
+
+For instance, if a parameter <code class="highlight inline"><span
+class="n">CAMERA_POSITION_X</span></code> is defined inside the module's VCV
+Rack C++, it will be used to control the property <code class="highlight
+inline"><span class="n">CameraPositionX</span></code> in Unity.
+
+#+BEGIN_INFO
+Note that VCV Rack's C++ code uses the <code class="highlight
+inline"><b>SNAKE_CASE</b></code> naming convention for parameters, while
+properties in C♯ should be defined in <code class="highlight
+inline"><b>PascalCase</b></code>.
+#+END_INFO

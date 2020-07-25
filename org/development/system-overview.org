@@ -1,0 +1,29 @@
+#+TITLE: System Overview
+#+HUGO_SECTION: development
+#+HUGO_WEIGHT: 90
+#+HUGO_BASE_DIR: ../../hugo/
+
+* System Overview
+URack uses the VCV Rack environment as a front-end to the URack Player, which
+handles the manipulation and rendering of graphics systems.
+
+Communication between VCV Rack and the URack Player works through a UDP network
+connection. This network can either be an internal connection (with both VCV and
+the URack Player running on the same computer) or an external connection (where
+VCV is run on one machine that controls URack Player instances on an arbitrary
+number of networked devices). This communication is bi-directional, and uses the
+Open Sound Control (OSC) protocol.
+
+Simply put, when a URack module inside VCV has a parameter changed —
+either by the user tweaking a knob themselves, or from a cable plugged into an
+input port — this change is passed onto the URack Player through the network to
+update its visual state. If a URack module computes some parameters inside the
+URack Player (i.e. on the graphical side), it is able to pipe these in the other
+direction into an output port.
+
+The URack Player itself is built using the Unity game engine, with new modules
+created using the C♯ programming language, or through use of the node-based
+VFX-Graph environment. A URack module's assemblies and assets are compiled and
+packaged into plugins that are loaded into the player at runtime, isolating the
+modules themselves from the runtime environment, and allowing them to be easily
+distributed like any other VCV Rack module.
