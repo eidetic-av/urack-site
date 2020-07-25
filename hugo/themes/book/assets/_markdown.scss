@@ -68,14 +68,14 @@
 
   code {
     padding: 0 $padding-4;
-    background: $gray-200;
+    background: $pre-background;
     border-radius: $border-radius;
     font-size: 0.875em;
   }
 
   pre {
     padding: $padding-16;
-    background: $gray-100;
+    background: $pre-background;
     border-radius: $border-radius;
     overflow-x: auto;
 

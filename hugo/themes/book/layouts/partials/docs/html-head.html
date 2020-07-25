@@ -41,3 +41,16 @@
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
 {{ "-->" | safeHTML }}
+
+<!-- Make all external links open in a new tab. -->
+<script>
+window.onload = function() {
+    var anchors = document.getElementsByTagName("a");
+    for (var i = 0; i < anchors.length; i++) {
+        var anchor = anchors[i];
+        if (anchor.hostname !== window.location.hostname) {
+            anchor.target = "_blank";
+        }
+    }
+};
+</script>

@@ -47,13 +47,33 @@
 }
 
 @font-face {
-  font-family: 'Roboto Mono';
+  font-family: 'Space Mono';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: local('Roboto Mono'), local('RobotoMono-Regular'),
-       url('fonts/roboto-mono-v6-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-       url('fonts/roboto-mono-v6-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  src: local('Space Mono'), local('SpaceMono-Regular'),
+       url('fonts/SpaceMono-Regular.woff2') format('woff2'),
+       url('fonts/SpaceMono-Regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Space Mono';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Space Mono Bold'), local('SpaceMono-Bold'),
+       url('fonts/SpaceMono-Bold.woff2') format('woff2'),
+       url('fonts/SpaceMono-Bold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Space Mono';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Space Mono Italic'), local('SpaceMono-Italic'),
+       url('fonts/SpaceMono-Italic.woff2') format('woff2'),
+       url('fonts/SpaceMono-Italic.woff') format('woff');
 }
 
 body {
@@ -61,26 +81,17 @@ body {
 }
 
 p {
-  font-size: 1.2rem;
   font-weight: 300;
 }
 
-strong {
+strong, b {
   font-family: 'Barlow Bold', 'Barlow', sans-serif;
-}
-
-nav {
-  font-size: 1.1rem;
 }
 
 h1, h2, h3 {
   font-family: 'Techna Sans', sans-serif;
 }
 
-h2 {
-  font-size: 2.2rem;
-}
-
-code {
-  font-family: 'Roboto Mono', monospace;
+code, div.LINK {
+  font-family: 'Space Mono', monospace;
 }

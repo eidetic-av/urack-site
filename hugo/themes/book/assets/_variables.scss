@@ -1,45 +1,18 @@
 /* You can override SASS variables here. */
 
-@import "plugins/dark";
-
 // Colours
 $body-background: #1c1e26;
+$pre-background: #232530;
+$body-font-color: #e9ecef;
 $color-nav-active: #faa463;
 $color-link: #b877db;
+$color-visited-link: #b877db;
+
+$gray-100: rgba(255, 255, 255, 0.1);
+$gray-200: rgba(255, 255, 255, 0.2);
+$icon-filter: brightness(0) invert(1);
 
 // Layout
-$container-max-width: 60rem;
+$body-max-width: 45rem;
+$toc-width: 14rem;
 $padding-figure: 2rem;
-
-// css overrides
-.book-brand {
-    font-size: 1.8rem;
-}
-#book-search-input {
-    background: #232530;
-}
-.anchor {
-    display: none;
-}
-
-// re-order the nav-list
-ul#URack {
-    display: flex;
-    flex-direction: column;
-
-    li {
-        margin: .8em 0;
-    }
-    // set "Overview" first
-    li:nth-child(3) {
-        order: 1;
-    }
-    // set "Collection" second
-    li:nth-child(1) {
-        order: 2;
-    }
-    // set "Development" third
-    li:nth-child(2) {
-        order: 3;
-    }
-}

@@ -1,3 +1,119 @@
 /* You can add custom styles here. */
 
 // @import "plugins/numbered";
+// @import "plugins/scrollbars";
+
+p {
+  font-size: 1.2rem;
+}
+
+nav {
+  font-size: 1.1rem;
+}
+
+h2 {
+  font-size: 2.2rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+.book-brand {
+    font-size: 1.8rem;
+}
+
+#book-search-input {
+    background: $pre-background;
+}
+
+.highlight pre {
+    background: $pre-background !important;
+}
+
+// re-order the nav-list
+ul#URack {
+    display: flex;
+    flex-direction: column;
+
+    li {
+        margin: .8em 0;
+    }
+    // set "Overview" first
+    li:nth-child(3) {
+        order: 1;
+    }
+    // set "Collection" second
+    li:nth-child(1) {
+        order: 2;
+    }
+    // set "Development" third
+    li:nth-child(2) {
+        order: 3;
+    }
+}
+
+// styling for the table of contents that appears on larger pages
+nav#TableOfContents {
+    font-size: 1rem;
+    // make page header entry the active color
+    & ul:first-child > li:first-child > a:first-child {
+        color: $color-nav-active;
+    }
+    // and all other entries white
+    a {
+        color: $body-font-color;
+    }
+}
+
+.book-page {
+
+    article {
+        // separate headline sections a little more from the previous paragraph
+        p + h3 {
+            padding-top: 1.5rem;
+        }
+    }
+
+    .book-footer {
+        padding-top: 2rem;
+    }
+
+    // custom block styling
+    div.INFO, div.LINK {
+        background-color: $pre-background !important;
+        margin: 1rem 0;
+        padding: .5rem 1rem .5rem .75rem;
+        border-radius: .25rem;
+        font-size: 1rem;
+        line-height: 1.4; 
+        p {
+            opacity: .8;
+            margin: 0.5rem 0;
+        }
+    }
+    div.INFO {
+        border-inline-start: .25rem solid #21bfc2;
+        font-style: italic;
+        p {
+            font-size: 1.1rem !important;
+            b {
+                font-style: normal;
+                font-weight: 700;
+            }
+        }
+    }
+    div.LINK {
+        border-inline-start: .25rem solid $gray-200;
+        p {
+            font-size: .85rem !important;
+        }
+        a {
+            color: $body-font-color;
+        }
+    }
+}
+
+code.highlight.inline {
+    font-size: 0.9rem;
+}
