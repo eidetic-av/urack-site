@@ -12,4 +12,8 @@ pluralizelisttitles = false
 [[menu.after]]
     name = "Github"
     url = "https://github.com/eidetic-av"
-
+    weight = 1
+[[menu.after]]
+    name = "Contact"
+    url = "mailto:urack@eidetic.net.au"
+    weight = 2
