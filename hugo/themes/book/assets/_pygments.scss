@@ -26,8 +26,7 @@
 .highlight .kp { color: #AA22FF } /* Keyword.Pseudo */
 .highlight .kr { color: #AA22FF;} /* Keyword.Reserved */
 .highlight .kt { color: #b877db;} /* Keyword.Type */
-.highlight .m { color: #f09383; font-weight: bold; } /* Literal.Number */
-.highlight .s { color: #BB4444 } /* Literal.String */
+.highlight .m, .highlight .s { color: #f09383; font-weight: bold; } /* Literal.Number */
 .highlight .n { color: #c95073 } /* Name.Generic */
 .highlight .na {} /* Name.Attribute */
 .highlight .nb { color: #AA22FF } /* Name.Builtin */

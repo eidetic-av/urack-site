@@ -20,19 +20,20 @@ that the *API Compatibility Level* of your project is set to *.NET 4.x*, rather
 than .NET Standard 2.0. You can change this setting in the project's Player
 Settings.
 
+The URack package has been developed using Unity 2019.3, so its recommended to
+stick with this version for now.
+
 ** The UModule Class
 <code class="highlight inline"><span
 class="nc">Eidetic.URack.UModule</span></code> is the base class from which all
 URack modules derive.
 
 If you're familiar with writing C♯ scripts in Unity, the process for creating a
-new module should feel very similar — only instead of extending from
-MonoBehaviour, your new script will extend from UModule, like so:
+new module should feel similar — only instead of extending from *MonoBehaviour*,
+your new script will extend from *UModule*, like so:
 
 #+BEGIN_SRC csharp
 using Eidetic.URack;
-
-public float TestFloat = 0;
 
 public class MyModule : UModule
 {
@@ -40,19 +41,88 @@ public class MyModule : UModule
 }
 #+END_SRC
 
-Any public properties declared inside a UModule can be targeted and updated by
-the module's instance inside VCV Rack. Properties that share the same name as a
-parameter defined in the module's corresponding VCV Rack plugin code will be
-automatically connected.
+Public properties that share the same name as a parameter defined in
+corresponding VCV Rack plugin code will be automatically connected.
 
-For instance, if a parameter <code class="highlight inline"><span
+For example, if the parameter <code class="highlight inline"><span
 class="n">CAMERA_POSITION_X</span></code> is defined inside the module's VCV
 Rack C++, it will be used to control the property <code class="highlight
 inline"><span class="n">CameraPositionX</span></code> in Unity.
 
 #+BEGIN_INFO
-Note that VCV Rack's C++ code uses the <code class="highlight
+Note that Rack's C++ code uses the <code class="highlight
 inline"><b>SNAKE_CASE</b></code> naming convention for parameters, while
 properties in C♯ should be defined in <code class="highlight
 inline"><b>PascalCase</b></code>.
 #+END_INFO
+
+Public properties annotated with an <code class="highlight
+inline">[Input]</code> attribute listen for incoming voltages from VCV.
+Conversely, annotating a property with an <code class="highlight
+inline">[Output]</code> attribute ensures that it's value is piped into an
+output port in VCV.
+
+** Inputs
+
+Here is an example of an input property that changes the X-position of a
+GameObject:
+
+#+BEGIN_SRC csharp
+[Input]
+public float PositionX
+{
+    set
+    {
+        var t = SomeGameObject.transform;
+        t.position = t.position + Vector3.right * value;
+    }
+}
+#+END_SRC
+
+The <code class="highlight inline">[Input]</code> attribute — along with binding
+the property to a parameter on the Rack module — also performs mapping and
+smoothing of the voltage as its passed into Unity.
+
+It takes the following /optional/ creation arguments to specify the mapping
+behaviour:
+
+#+attr_html: :class method-arguments
+| <span class="type">float</span> minInput  | The minimum voltage expected at the input port.<span class="arg-default">This defaults to 0.</span>                                 |
+| <span class="type">float</span> maxInput  | The maximum voltage expected at the input port.<span class="arg-default">This defaults to 10. </span>                               |
+| <span class="type">float</span> minOutput | The minimum value of the float mapped into the setter.<span class="arg-default">This defaults to 0. </span>                         |
+| <span class="type">float</span> maxOutput | The maximum value of the float mapped into the setter.<span class="arg-default">This defaults to 10.</span>                         |
+| <span class="type">bool</span> clamp      | Whether or not a voltage outside the mapping range should be hard-limited. <span class="arg-default">This defaults to false.</span> |
+| <span class="type">float</span> exponent  | The curve the property value is mapped against. <span class="arg-default">This defaults to 1.</span>                                |
+| <span class="type">float</span> smoothing | The amount of damping performed on the property value. <span class="arg-default">This defaults to 3.</span>                         |
+
+If we need to use an input property's value outside of its setter,
+auto-implemented properties come in handy:
+
+#+BEGIN_SRC csharp
+using Eidetic.URack;
+using UnityEngine;
+
+public class MyModule : UModule
+{
+    GameObject SomeObject;
+
+    [Input(-5, 5, -180, 180)]
+    public float RotateXAxis { get; set; }
+
+    public void Update()
+    {
+        var t = SomeObject.transform;
+        t.RotateAround(t.position, Vector3.left, RotateXAxis);
+    }
+}
+#+END_SRC
+
+** Outputs
+
+** The VFXModule Class
+
+** Module Prefabs
+
+** Bundled Assets
+
+** Exporting Modules as Plugins

@@ -16,7 +16,12 @@ h2 {
 }
 
 h3 {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
+}
+
+h4 {
+    font-size: 1.4rem;
+    font-weight: 400 !important;
 }
 
 .book-brand {
@@ -112,8 +117,41 @@ nav#TableOfContents {
             color: $body-font-color;
         }
     }
+
+    code.highlight.inline {
+        font-size: 0.9rem;
+    }
+
+    // method creation argument table styling
+    .method-arguments table {
+        background: $pre-background;
+        display: table;
+        width: 100%;
+        border-radius: .25rem;
+        th, td {
+            text-align: left;
+            letter-spacing: .5px;
+            font-weight: 400 !important;
+            border: none !important;
+            background: transparent !important;
+        }
+        th, tr:nth-child(2n) {
+            background: rgba(255, 255, 255, .025) !important;
+        }
+        .arg-default {
+            display: block;
+            opacity: .5;
+        }
+        tr th:first-child, tr td:first-child {
+            font-family: "Space Mono", monospace;
+            font-size: .85rem;
+            letter-spacing: 0.33px !important;
+            color: $color-emph;
+            width: 30%;
+            .type {
+                color: $color-link;
+            }
+        }
+    }
 }
 
-code.highlight.inline {
-    font-size: 0.9rem;
-}
