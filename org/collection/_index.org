@@ -1,0 +1,6 @@
+#+TITLE: The URack Collection
+#+HUGO_SECTION: collection
+#+HUGO_WEIGHT: 300
+#+HUGO_BASE_DIR: ../../hugo/
+
+* The URack Collection

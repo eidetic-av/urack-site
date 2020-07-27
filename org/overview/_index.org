@@ -1,7 +1,7 @@
-#+TITLE: Getting Started
+#+TITLE: Overview
 #+HUGO_SECTION: overview
-#+HUGO_WEIGHT: 100
-#+HUGO_BASE_DIR: ../hugo/
+#+HUGO_WEIGHT: 1
+#+HUGO_BASE_DIR: ../../hugo/
 
 * Modular audio-visual composition with VCV Rack and Unity
 [[./images/urack-scrot.png]]
@@ -13,5 +13,3 @@
 
  Like all modules in VCV, URack modules are controlled with control voltage —
  allowing the user to tightly integrate sound with graphics by sharing CV.
-
-** Downloads

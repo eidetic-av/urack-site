@@ -1,7 +1,9 @@
-#+TITLE: System Overview
+#+TITLE: Development
 #+HUGO_SECTION: development
-#+HUGO_WEIGHT: 90
+#+HUGO_WEIGHT: 200
 #+HUGO_BASE_DIR: ../../hugo/
+
+* Development
 
 * System Overview
 URack uses the VCV Rack environment as a front-end to the URack Player, which
