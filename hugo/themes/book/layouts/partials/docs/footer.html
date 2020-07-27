@@ -27,13 +27,41 @@
       <div>
       {{ if .NextInSection }}
           <a href="{{ .NextInSection.Permalink }}">
-          Previous — {{ .NextInSection.Title }}</a>
+              Previous — {{ .NextInSection.Title }}</a>
+      {{ else }}
+          {{ if not .Page.IsNode }}
+          <a href="{{ .CurrentSection.Permalink }}">
+              Previous — {{ .CurrentSection.Title }}</a>
+          {{ end }}
       {{ end }}
       </div>
       <div>
       {{ if .PrevInSection }}
           <a href="{{ .PrevInSection.Permalink }}">
-          Next — {{ .PrevInSection.Title }}</a>
+              Next — {{ .PrevInSection.Title }}</a>
+      {{ else }}
+          {{ if .Page.IsNode }}
+              {{ range first 1 .Pages }}
+              <a href="{{ .Permalink }}">
+                  Next — {{ .Title }}</a>
+              {{ end }}
+          {{ else }}
+              {{ $thisPage := .Page }}
+              {{ $matchedSection := "false" }}
+              {{ $printedResult := "false" }}
+              {{ range $i, $section := .Site.Sections }}
+                  {{ if (eq $matchedSection "true") }}
+                      {{ if (eq $printedResult "false") }}
+                          <a href="{{ $section.Permalink }}">
+                              Next — {{ $section.Title }}</a>
+                          {{ $printedResult = "true" }}
+                      {{ end }}
+                  {{ end }}
+                  {{ if eq $section.Type $thisPage.Type }}
+                      {{ $matchedSection = "true" }}
+                  {{ end }}
+              {{ end }}
+          {{ end }}
       {{ end }}
       </div>
   </div>
