@@ -6,3 +6,5 @@
 * Getting Started
 
 ** Downloads
+
+** Installing Plugins

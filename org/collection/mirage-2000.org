@@ -1,6 +1,5 @@
 #+TITLE: Mirage-2000
 #+HUGO_SECTION: collection
-#+HUGO_WEIGHT: 200
 #+HUGO_BASE_DIR: ../../hugo/
 
 * Mirage-2000 Texture Sequence Vaporizer

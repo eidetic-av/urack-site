@@ -1,0 +1,53 @@
+#+TITLE: Billboard
+#+HUGO_SECTION: collection
+#+HUGO_BASE_DIR: ../../hugo/
+
+* Billboard Particle Renderer
+[[./images/billboard.png]]
+
+The *Billboard* module creates and renders a particle system from a set of
+points passed into the *Point Cloud Input* jack. Spawn Rate controls how
+frequently new particles are emitted from the input point cloud positions.
+
+*Life* sets the time in seconds each particle lasts before disappearing.
+
+*Size* sets the initial size of each particle.
+
+*Growth* sets how much bigger each particle gets over its lifetime. Setting this
+to a negative value will cause particles to shrink over time.
+
+*Fade* controls the intensity at which each particle fades colour over its
+lifetime. Setting this to a positive value fades the particle in over time, and
+setting it to a negative value fades the particles out as it dies.
+
+*Turbulence* controls the intensity of a 3D perlin noise-field applied to the
+positions of all particles, causing a 'wave'-like rippling effect. The *Scale*
+and *Delay* parameters to the left manipulate the parameters of this
+noise-field.
+
+*Scale* sets the overall size of the field. A larger value will result in bigger
+and slower turbulence, and a smaller value results in more frequent waves.
+
+*Delay* controls the time it takes for each particle to ramp to the desired
+turbulence intensity. Keeping the knob in the middle gives all particles a
+constant turbulence over their lifetime. Giving it a positive value makes each
+particle emit at its input position and get more turbulent over time. Giving it
+a negative value starts the particle in a turbulent position when its emitted,
+and moves it to the input position over time.
+
+*Fuzz* controls how much random noise is applied to each particle. This differs
+to Turbulence because the noise values are not bound to any predictable waves.
+They are randomised each frame — similar to white noise.
+
+The three *Force* parameters control directional energy applied to each
+particle. A force on the X-axis will control how intensely the particles are
+pushed to the left or right after the particle is emitted from its initial
+position. Similarly, a force on the Y-axis controls how intensely each particle
+is pushed up or down, and a force on the Z-axis controls how intensely each
+particle is pushed forward or backward. The X and Z Force parameters give an
+effect similar to wind, and the Y Force parameter gives a gravity (or
+anti-gravity) effect.
+
+The *Point Cloud Thru* port echoes the point cloud passed into the input,
+without any modifications, and the *Active* button switches rendering on or off
+entirely.

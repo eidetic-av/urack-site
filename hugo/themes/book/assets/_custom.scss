@@ -60,13 +60,6 @@ nav#TableOfContents {
 
 .book-page {
 
-    article {
-        // separate headline sections a little more from the previous paragraph
-        p + h3 {
-            padding-top: 1.5rem;
-        }
-    }
-
     .book-footer {
         padding-top: 2rem;
     }

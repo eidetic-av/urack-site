@@ -122,10 +122,12 @@ ul.pagination {
 
   a.collapsed {
     display: flex;
-    justify-content: space-between;
+    justify-content: left;
 
     &::after {
-      content: "▸";
+      content: "‣";
+      padding: 0 .55rem;
+      transform: rotate(90deg) translateX(.15rem);
     }
   }
 }
