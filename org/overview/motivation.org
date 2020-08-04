@@ -1,7 +1,0 @@
-#+TITLE: Motivation
-#+HUGO_SECTION: overview
-#+HUGO_WEIGHT: 200
-#+HUGO_BASE_DIR: ../../hugo/
-
-* Motivation
-This project is motivated.

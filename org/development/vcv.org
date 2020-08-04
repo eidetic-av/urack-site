@@ -1,6 +1,202 @@
-#+TITLE: The VCV Rack SDK
+#+TITLE: URack-VCV Plugins
 #+HUGO_SECTION: development
-#+HUGO_WEIGHT: 200
+#+HUGO_WEIGHT: 300
 #+HUGO_BASE_DIR: ../../hugo/
+#+HUGO_CUSTOM_FRONT_MATTER: :bookToC true
 
-* The VCV Rack SDK
+* URack-VCV Plugins
+You can create a URack plugin without touching any C++ code at all.
+
+If you use the python helper script outlined on the [[../creating-modules/][Creating Modules]] page, the C++ code
+will automatically be generated for you, and the only programming you'll need to
+do is from inside Unity.
+
+The only thing on this page that you /need/ to do is [[./#setting-up][set up your development
+environment]] to build the VCV Rack-based portion of your plugin.
+
+However, if you want to add audio functionality to your module, set parameter
+startup values, implement custom user-interface widgets, or need to dive into
+the VCV Rack Plugin code for any other reason, the remainder of this guide
+outlines how the URack-VCV library works.
+
+The following instructions assume you have already set up your VCV Rack plugin
+development environment following [[https://vcvrack.com/manual/Building][this guide]] in the VCV Rack manual.
+
+* Setting Up
+First, clone or download the URack-VCV library from:
+#+BEGIN_LINK
+https://github.com/eidetic-av/URack-VCV.git
+#+END_LINK
+
+Then, either set the +~URACK_DIR~+ environment variable (in your ~~/.bashrc~ or
+equivalent), or set it in your plugin's Makefile. It should point to wherever
+you put the URack-VCV library.
+
+Now if you include the ~plugin.mk~ file in your Makefile _before the plugin's
+source_, the URack-VCV library will be included in your plugin.
+
+The following is an example of a simple plugin Makefile:
+
+#+BEGIN_SRC makefile
+RACK_DIR := /path/to/Rack-SDK
+URACK_DIR := /path/to/URack-VCV
+
+# Include the URack components
+include $(URACK_DIR)/plugin.mk
+
+# Add plugin source files to the build
+SOURCES += $(wildcard src/*.cpp)
+
+# Add resource files and plugin license
+DISTRIBUTABLES += res
+DISTRIBUTABLES += $(wildcard LICENSE*)
+
+# Include the Rack plugin Makefile framework
+include $(RACK_DIR)/plugin.mk
+#+END_SRC
+
+To use the library in your source, simply include the header in your
+~plugin.hpp~ instead of the standard libRack header:
+
+#+BEGIN_SRC cpp
+// replace this:
+#include "rack.hpp"
+// with this:
+#include "urack.hpp"
+#+END_SRC
+
+Now, you'll be able to build the VCV Rack-based portion of your URack plugin by
+running ~make~, ~make dist~ or ~make install~ inside the plugin's directory.
+
+* The UModule Class
+The URack-VCV library includes a *~UModule~* structure — complementary to the
+class found in the Unity package. Similarly, all URack modules extend from this
+base, like so:
+
+#+BEGIN_SRC cpp
+#include "plugin.hpp"
+
+struct MyModule : URack::UModule {
+    // ...
+}
+#+END_SRC
+
+*~UModule~* itself extends from VCV Rack's base *~Module~* class, adding
+ functionality that allows it to communicate with instances of the URack Player.
+
+ Implementing behaviours in this structure is achieved /mostly/ in the same way
+ as it is with a regular VCV Rack module — with a few changes:
+
+*** 1. The _process_ function is replaced with _update_
+Normally, to implement functionality that updates on every frame of audio, the
+~process()~ function is overridden. In a *~UModule~*, this function is reserved
+for processing incoming and outgoing messages from the URack Player. If you were
+to override ~process()~ like normal, the module would cease communications with
+the Player.
+
+Instead, the module implementation needs to override the ~update()~ function,
+like so:
+
+#+BEGIN_SRC cpp
+void update(const ProcessArgs& args) override {
+    // ...
+}
+#+END_SRC
+
+*** 2. Functions for saving and loading JSON are replaced
+If you need to serialise and deserialise data to save the state of variables in
+your module, you cannot use the regular ~dataFromJson()~ and ~dataToJson()~
+methods that exist inside *~Module~*. These functions have already been
+overridden to store information about connected URack Player instances. Instead,
+the ~onLoad()~ and ~onSave()~ functions serve the same purpose — i.e.
+
+#+BEGIN_SRC cpp
+int myValue;
+
+void onLoad(json_t *rootJ) override {
+    json_t *targetJ = json_object_get(rootJ, "myValue");
+    myValue = json_integer_value(targetJ);
+}
+
+json_t *onSave() override {
+    json_t *rootJ = json_object();
+    json_object_set_new(rootJ, "myValue", json_integer(target));
+    return rootJ;
+}
+#+END_SRC
+
+*** 3. New functions for binding parameters
+*~UModule~* contains functions that automate the binding of VCV Rack Plugin
+parameters with properties in Unity. These functions should be called in the
+constructor, and are described in the next section.
+
+** Sending Inputs
+To configure a parameter to /send/ its values _into Unity_, the ~configUpdate()~
+function is used. It has various signatures, but in it's simplest form, it can
+be used like so:
+
+#+BEGIN_SRC cpp
+enum ParamIds { X_PARAM, NUM_PARAMS };
+
+MyModule() {
+    configUpdate("XProperty", X_PARAM);
+}
+#+END_SRC
+
+In the example above, the first argument sets the name of the property in Unity
+that the parameter should target, and the second argument sets which parameter
+is used to update that property.
+
+This ~configUpdate()~ function can also be set up to combine a parameter with an
+attenuated input:
+
+#+BEGIN_SRC cpp
+enum ParamIds { X_PARAM, X_ATTEN_PARAM, NUM_PARAMS };
+enum InputIds { X_INPUT, NUM_INPUTS };
+
+MyModule() {
+    configUpdate("XProperty",
+                 X_PARAM, X_INPUT, X_ATTEN_PARAM, 1.5f);
+}
+#+END_SRC
+
+The example above will update the property in Unity named +~XProperty~+ with
+both a parameter value and an input value scaled by an attenuator. The value of
+the parameter and the attenuated input will be summed before being sent. The
+final argument in the example above sets the default value of the +~X_PARAM~+ to
+1.5 volts.
+
+** Receiving Outputs
+
+To configure an output to /receive/ its values _from Unity_, the
+~configListener()~ function is used. This function takes the name of the
+property address to listen on, as well as the enum value of the output it needs
+to bind to:
+
+#+BEGIN_SRC cpp
+enum OutputIds { Z_OUTPUT, NUM_OUTPUTS };
+
+MyModule() {
+    configListener("ZOutput", Z_OUTPUT);
+}
+#+END_SRC
+
+
+* The UModuleWidget
+** Point Cloud Ports
+
+* Custom Messages
+Custom messages can be sent to Unity in order to create more complex
+interactions. This is handled using static functions inside the *~Dispatcher~*
+structure.
+
+The ~send()~ function takes an +~OscArg~+ vector and sends these parameters to a
+specified address, like so:
+
+#+BEGIN_SRC cp
+std::vector<OscArg> args = { 5.f, "blue" };
+URack::Dispatcher::send(activeHosts, "Color", args);
+#+END_SRC
+
+The example above sends the float 5, and the string "blue" to the address
+"Color" on all URack Player instances the module is connected to.

@@ -22,27 +22,26 @@
   </div>
 {{ end }}
 
-  <div class="flex flex-wrap justify-between"
-       style="width: 100%; margin: 1rem 0; font-size: 1rem">
+  <div class="flex flex-wrap justify-between" style="width: 100%">
       <div>
       {{ if .NextInSection }}
-          <a href="{{ .NextInSection.Permalink }}">
+          <a class="footer-nav-link" href="{{ .NextInSection.Permalink }}">
               Previous — {{ .NextInSection.Title }}</a>
       {{ else }}
           {{ if not .Page.IsNode }}
-          <a href="{{ .CurrentSection.Permalink }}">
+          <a class="footer-nav-link" href="{{ .CurrentSection.Permalink }}">
               Previous — {{ .CurrentSection.Title }}</a>
           {{ end }}
       {{ end }}
       </div>
       <div>
       {{ if .PrevInSection }}
-          <a href="{{ .PrevInSection.Permalink }}">
+          <a class="footer-nav-link" href="{{ .PrevInSection.Permalink }}">
               Next — {{ .PrevInSection.Title }}</a>
       {{ else }}
           {{ if .Page.IsNode }}
               {{ range first 1 .Pages }}
-              <a href="{{ .Permalink }}">
+              <a class="footer-nav-link" href="{{ .Permalink }}">
                   Next — {{ .Title }}</a>
               {{ end }}
           {{ else }}
@@ -52,7 +51,7 @@
               {{ range $i, $section := .Site.Sections }}
                   {{ if (eq $matchedSection "true") }}
                       {{ if (eq $printedResult "false") }}
-                          <a href="{{ $section.Permalink }}">
+                          <a class="footer-nav-link" href="{{ $section.Permalink }}">
                               Next — {{ $section.Title }}</a>
                           {{ $printedResult = "true" }}
                       {{ end }}

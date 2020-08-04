@@ -7,9 +7,13 @@
 [[./images/urack-scrot.png]]
 
 *URack* is a project that combines [[https://vcvrack.com/][the VCV Rack software modular synthesiser]]
- with [[https://unity.com/][the Unity game engine]], making for an audio-visual workstation that allows
- users to compose and perform music and graphics within the same software
- environment.
+with [[https://unity.com/][the Unity game engine]], making for an audio-visual workstation that allows
+users to compose and perform music and graphics within the same software
+environment.
 
- Like all modules in VCV, URack modules are controlled with control voltage —
- allowing the user to tightly integrate sound with graphics by sharing CV.
+Like all modules in VCV, URack modules are controlled with control voltage —
+allowing the user to tightly integrate sound with graphics by sharing CV.
+
+To start composing with URack, visit the [[./getting-started/][Getting Started]] page and download the
+*URack Player* runtime, along with the *URack Collection* — a series of modules
+that showcase URack's capabilities.

@@ -9,21 +9,14 @@
 
 The URack Collection is an assortment of modules that demonstrate the capabilities of the URack framework.
 
-If you want to jump right in and create some visuals, download this collection
+If you want to jump right in and create some visuals, [[../overview/getting-started/#downloads][download]] this collection
 along with the URack Player to get started.
 
 Included modules are detailed on the following pages.
 
-** Downloads
-#+BEGIN_INFO
- [[../][Linux]] — [[../][Windows]] — [[../][macOS]]
-#+END_INFO
-
-For help on installing these modules, see [[../overview/getting-started/#installing-plugins][Installing Plugins]].
-
 ** Source
 The source for these modules serves as a reference implementation for the
-various features of the URack SDKs, which themselves were developed largely
+various features of the URack libraries, which themselves were developed
 alongside this collection.
 
 It's available at the following repository:

@@ -1,0 +1,17 @@
+#+TITLE: Point Clouds
+#+HUGO_SECTION: overview
+#+HUGO_WEIGHT: 300
+#+HUGO_BASE_DIR: ../../hugo/
+
+* Point Clouds
+URack introduces a new value type into VCV Rack. On top of control voltages and
+audio, URack is able to pass *point cloud* data from module-to-module.
+
+A point cloud is a collection of points in 3D space. In the context of URack, it
+can be used to display vertices stored in a 3D model, stream input from a
+depth-camera, or reconstruct a scene captured using photogrammetry. Point cloud
+manipulation can create some stunning visualisations — particularly when
+combined with algorithmic noise, or rendered with light simulations.
+
+Point cloud cables are thick like polyphonic cables, and feature a white stripe
+to differentiate them.

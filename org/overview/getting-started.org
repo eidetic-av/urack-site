@@ -4,7 +4,41 @@
 #+HUGO_BASE_DIR: ../../hugo/
 
 * Getting Started
+Assuming you have already installed [[https://vcvrack.com][VCV Rack]] on your system, you can begin using
+URack by downloading the *URack Player* below.
+
+The URack Player is a runtime for URack modules that come packaged in plugins —
+so by itself it's not much good. The *URack Collection* is a plugin developed by
+/eidetic/ that includes modules for manipulating images, 3D point-clouds, lights
+and cameras. Follow the instructions for [[./#installing-plugins][Installing Plugins]] below to get started
+creating audio-visual compositions.
 
 ** Downloads
+Binaries for Windows, Linux and macOS are available here:
++ [[https://eidetic.net.au/urack/downloads/player/][URack Player]]
++ [[https://eidetic.net.au/urack/downloads/collection/][URack Collection]]
 
 ** Installing Plugins
+URack plugins contain two components:
+1. A plugin for VCV Rack.
+2. A plugin for the URack Player.
+
+The VCV Rack plugin component is installed by dropping the corresponding archive
+into the 'Rack user folder' on the system you wish to use as your VCV Rack host.
+The location of the 'Rack user folder differs' depending on your platform:
++ Windows: ~My Documents/Rack/~
++ Linux: ~~/.Rack/~
++ macOS: ~Documents/Rack/~
+
+The URack Player plugin is installed similarly, by dropping the corresponding
+plugin archive into an adjacent 'URack user folder' on the systems you wish to
+use to render your graphics.
++ Windows: ~My Documents/URack/~
++ Linux: ~~/.URack/~
++ macOS: ~Documents/URack/~
+
+Plugins are separated into these two components to facilitate the scenario where
+the URack Player is running on a separate device to the VCV Rack host. There is
+no need to install the VCV Rack plugin components on devices used solely for
+rendering graphics, and no need to install the URack Player plugin components on
+the machine running only VCV Rack.

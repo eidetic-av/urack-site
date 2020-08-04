@@ -1,14 +1,105 @@
+/* syntax colors */
+$code-default: $body-font-color;
+$code-orange: #f09383;
+$code-red: #e95678;
+$code-purple: #b877db;
+$code-blue: #21bfc2;
+$code-comment: #4e5059;
+
+/* inline code styling */
+.markdown code { font-size: .9rem; }
+/* use emphasis blocks to change code color for inline variables, classnames etc. */
+.markdown strong code { color: $code-blue; font-weight: 400; }
+.markdown em code { color: $code-purple; font-style: normal; }
+.markdown .underline code { color: $code-orange; border-radius: 0; }
+.markdown del { text-decoration: none; }
+.markdown del code { color: $code-red; }
+
+/* code inside info blocks needs to be emphasised */
+.markdown .INFO code { font-style: normal; font-weight: 700; }
+
+/* regular code styling */
 .highlight .hll { background-color: #ffffcc }
-.highlight .c { color: #4e5059; font-style: italic } /* Comment */
-.highlight .ch { color: #4e5059; font-style: italic } /* Comment */
-.highlight .cm { color: #4e5059; font-style: italic } /* Comment */
-.highlight .cp { color: #4e5059; font-style: italic } /* Comment */
-.highlight .cpf { color: #4e5059; font-style: italic } /* Comment */
-.highlight .c1 { color: #4e5059; font-style: italic } /* Comment */
-.highlight .cs { color: #4e5059; font-style: italic } /* Comment */
+.highlight .c { color: $code-comment; font-style: italic } /* Comment */
+.highlight .ch { color: $code-comment; font-style: italic } /* Comment */
+.highlight .cm { color: $code-comment; font-style: italic } /* Comment */
+.highlight .cp { color: $code-comment; font-style: italic } /* Comment */
+.highlight .cpf { color: $code-comment; font-style: italic } /* Comment */
+.highlight .c1 { color: $code-comment; font-style: italic } /* Comment */
+.highlight .cs { color: $code-comment; font-style: italic } /* Comment */
 .highlight .err { border: 1px solid #FF0000 } /* Error */
-.highlight .k { color: #b877db;} /* Keyword */
-.highlight .k { color: #21bfc2;} /* Keyword */
+
+/* Makfile syntax highlighting is fucked and errors includes */
+.highlight .language-makefile .err { border: none; }
+
+// cpp is also fucked 
+.highlight .language-cpp {
+    .cp { color: $code-blue; font-weight: 700; font-style: normal; }
+    .cpf { color: $code-orange; font-style: normal; }
+    .mf { color: $code-orange; }
+    .kt { color: $code-blue; }
+    .nf { color: $code-blue; }
+    .k { color: $code-purple; }
+    .n { color: $code-default; }
+    .o { color: $code-default; }
+    .nc { color: $code-blue; }
+    // there needs to be a better solution to target elements
+    .k + .nc + .o + .n { color: $code-orange; }
+    .k + .nc + .o + .n + .o + .n { color: $code-blue; }
+    .kt + .n { color: $code-red; }
+    .nf + .p + .n { color: $code-blue; }
+    .nf + .p + .k + .n { color: $code-blue; }
+    .k + .p + .n { color: $code-blue; }
+    .p + .p + .n { color: $code-blue; }
+    .p + .k + .n + .o + .n { color: $code-red; }
+    .nf + .p + .n + .o + .n { color: $code-red; }
+    .s + .p + .n + .p + .n + .p + .n { color: $code-default; }
+    .k + .p + .n + .o + .n { color: $code-red; }
+    .p + .n + .p + .n + .p + .n { color: $code-blue; }
+    .p + .n + .p + .n + .p + .n + .p + .p + .n { color: $code-default; }
+}
+
+.highlight .language-cp {
+    .n { color: $code-orange; }
+    .o { color: $code-default; }
+    .mf { color: $code-orange; }
+    .n + .o + .n { color: $code-blue; }
+    .n + .o + .n + .o + .n { color: $code-default; }
+    .n + .o + .n + .o + .n + .o + .n { color: $code-red; }
+    .p + .s + .p + .n + .o + .n { color: $code-orange; }
+    .n + .o + .n + .p + .n { color: $code-default; }
+    .n + .p + .s + .p + .n { color: $code-default; }
+} 
+
+.highlight .language-csharp {
+    .cp { color: $code-blue; font-weight: 700; font-style: normal; }
+    .cpf { color: $code-orange; font-style: normal; }
+    .kt { color: $code-blue; }
+    .nf { color: $code-blue; }
+    .k { color: $code-purple; }
+    .n { color: $code-default; }
+    .o { color: $code-default; }
+    .nc { color: $code-blue; }
+    .k + .k { color: $code-blue; }
+    .k + .k + .n { color: $code-blue; }
+    .nc + .p + .n + .p + .n { color: $code-blue; }
+    .nc + .p + .n + .p + .n + .n { color: $code-red; }
+    .n + .p + .n + .p + .k { color: $code-orange; }
+    .k + .k + .nc + .p + .n { color: $code-blue; }
+    .k + .nc + .o + .n { color: $code-orange; }
+    .k + .nc + .o + .n + .o + .n { color: $code-blue; }
+    .kt + .n { color: $code-red; }
+    .nf + .p + .n { color: $code-blue; }
+    .nf + .p + .k + .n { color: $code-blue; }
+    .k + .p + .n { color: $code-blue; }
+    .p + .p + .n { color: $code-blue; }
+    .p + .k + .n + .o + .n { color: $code-red; }
+    .nf + .p + .n + .o + .n { color: $code-red; }
+    .k + .p + .n + .o + .n { color: $code-red; }
+}
+
+.highlight .k { color: $code-purple;} /* Keyword */
+.highlight .k { color: $code-blue;} /* Keyword */
 .highlight .o { color: #666666 } /* Operator */
 .highlight .gd { color: #A00000 } /* Generic.Deleted */
 .highlight .ge { font-style: italic } /* Generic.Emph */
@@ -25,21 +116,21 @@
 .highlight .kn { color: #AA22FF;} /* Keyword.Namespace */
 .highlight .kp { color: #AA22FF } /* Keyword.Pseudo */
 .highlight .kr { color: #AA22FF;} /* Keyword.Reserved */
-.highlight .kt { color: #b877db;} /* Keyword.Type */
-.highlight .m, .highlight .s { color: #f09383; font-weight: bold; } /* Literal.Number */
-.highlight .n { color: #c95073 } /* Name.Generic */
+.highlight .kt { color: $code-purple;} /* Keyword.Type */
+.highlight .m, .highlight .s { color: $code-orange; } /* Literal.Number */
+.highlight .n { color: $code-red; } /* Name.Generic */
 .highlight .na {} /* Name.Attribute */
 .highlight .nb { color: #AA22FF } /* Name.Builtin */
-.highlight .nc { color: #f09383;} /* Name.Class */
+.highlight .nc { color: $code-orange;} /* Name.Class */
 .highlight .no { color: #880000 } /* Name.Constant */
 .highlight .nd { color: #AA22FF } /* Name.Decorator */
 .highlight .ni { color: #999999;} /* Name.Entity */
 .highlight .ne { color: #D2413A;} /* Name.Exception */
-.highlight .nf { color: #00A000 } /* Name.Function */
+.highlight .nf { color: $code-purple; } /* Name.Function */
 .highlight .nl { color: #A0A000 } /* Name.Label */
-.highlight .nn { color: #f09383;} /* Name.Namespace */
+.highlight .nn { color: $code-orange;} /* Name.Namespace */
 .highlight .nt { color: #008000;} /* Name.Tag */
-.highlight .nv { color: #B8860B } /* Name.Variable */
+.highlight .nv { color: $code-red; } /* Name.Variable */
 .highlight .ow { color: #AA22FF;} /* Operator.Word */
 .highlight .w { color: #bbbbbb } /* Text.Whitespace */
 .highlight .mb { color: #666666 } /* Literal.Number.Bin */

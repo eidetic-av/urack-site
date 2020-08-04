@@ -1,15 +1,29 @@
 #+TITLE: The Unity Package
 #+HUGO_SECTION: development
-#+HUGO_WEIGHT: 300
+#+HUGO_WEIGHT: 200
 #+HUGO_BASE_DIR: ../../hugo/
 #+HUGO_CUSTOM_FRONT_MATTER: :bookToC true
 
 * The Unity Package
+** The URack-Player Project
+The easiest way to get going is to clone the URack-Player Unity project.
 
-** Installation
+#+BEGIN_LINK
+https://github.com/eidetic-av/URack-Player.git
+#+END_LINK
 
-Create a new Unity project that uses the *Universal Render Pipeline*, and import
-the URack package by adding the following git repository in the package manager:
+This is set up with all the necessary packages and the URack-Unity SDK, along
+with the correct render pipeline and project runtime settings.
+
+The URack Player has been developed using Unity 2019.3, so its recommended to
+stick with this version for now.
+
+Alternatively, you can install the URack SDK package in your own project.
+
+** Installation in a New Project
+Create a new Unity project, or open an existing project that uses the *High
+Definition Render Pipeline*, and import the URack package by adding the
+following git repository in the package manager:
 
 #+BEGIN_LINK
 https://github.com/eidetic-av/URack-Unity.git
@@ -20,17 +34,12 @@ that the *API Compatibility Level* of your project is set to *.NET 4.x*, rather
 than .NET Standard 2.0. You can change this setting in the project's Player
 Settings.
 
-The URack package has been developed using Unity 2019.3, so its recommended to
-stick with this version for now.
-
 ** The UModule Class
-<code class="highlight inline"><span
-class="nc">Eidetic.URack.UModule</span></code> is the base class from which all
-URack modules derive.
+*~UModule~* is the base class from which all URack modules derive.
 
 If you're familiar with writing C♯ scripts in Unity, the process for creating a
-new module should feel similar — only instead of extending from *MonoBehaviour*,
-your new script will extend from *UModule*, like so:
+new module should feel similar — only instead of extending from *~MonoBehaviour~*,
+your new script will extend from *~UModule~*, like so:
 
 #+BEGIN_SRC csharp
 using Eidetic.URack;
@@ -44,25 +53,18 @@ public class MyModule : UModule
 Public properties that share the same name as a parameter defined in
 corresponding VCV Rack plugin code will be automatically connected.
 
-For example, if the parameter <code class="highlight inline"><span
-class="n">CAMERA_POSITION_X</span></code> is defined inside the module's VCV
-Rack C++, it will be used to control the property <code class="highlight
-inline"><span class="n">CameraPositionX</span></code> in Unity.
+For example, if the parameter +~CAMERA_POSITION_X~+ is defined inside the
+module's VCV Rack C++, it will be used to control the property
++~CameraPositionX~+ in Unity.
 
 #+BEGIN_INFO
-Note that Rack's C++ code uses the <code class="highlight
-inline"><b>SNAKE_CASE</b></code> naming convention for parameters, while
-properties in C♯ should be defined in <code class="highlight
-inline"><b>PascalCase</b></code>.
+Note that Rack's C++ code uses the ~SNAKE_CASE~ naming convention for
+parameters, while public properties in C♯ should be defined in ~PascalCase~.
 #+END_INFO
 
-Public properties annotated with an <code class="highlight
-inline">[Input]</code> attribute listen for incoming voltages from VCV.
-Conversely, annotating a property with an <code class="highlight
-inline">[Output]</code> attribute ensures that it's value is piped into an
-output port in VCV.
-
 ** Inputs
+Public properties annotated with an ~[Input]~ attribute listen for
+incoming voltages from VCV.
 
 Here is an example of an input property that changes the X-position of a
 GameObject:
@@ -79,21 +81,21 @@ public float PositionX
 }
 #+END_SRC
 
-The <code class="highlight inline">[Input]</code> attribute — along with binding
-the property to a parameter on the Rack module — also performs mapping and
-smoothing of the voltage as its passed into Unity.
+The ~[Input]~ attribute — along with binding the property to a parameter on the
+Rack module — also performs mapping and smoothing of the voltage as its passed
+into Unity.
 
 It takes the following /optional/ creation arguments to specify the mapping
 behaviour:
 
 #+attr_html: :class method-arguments
-| <span class="type">float</span> minInput  | The minimum voltage expected at the input port.<span class="arg-default">This defaults to 0.</span>                                 |
-| <span class="type">float</span> maxInput  | The maximum voltage expected at the input port.<span class="arg-default">This defaults to 10. </span>                               |
-| <span class="type">float</span> minOutput | The minimum value of the float mapped into the setter.<span class="arg-default">This defaults to 0. </span>                         |
-| <span class="type">float</span> maxOutput | The maximum value of the float mapped into the setter.<span class="arg-default">This defaults to 10.</span>                         |
-| <span class="type">bool</span> clamp      | Whether or not a voltage outside the mapping range should be hard-limited. <span class="arg-default">This defaults to false.</span> |
-| <span class="type">float</span> exponent  | The curve the property value is mapped against. <span class="arg-default">This defaults to 1.</span>                                |
-| <span class="type">float</span> smoothing | The amount of damping performed on the property value. <span class="arg-default">This defaults to 3.</span>                         |
+| /~float~/ +~minInput~+  | The minimum voltage expected at the input port.<span class="arg-default">This defaults to 0.</span>                                 |
+| /~float~/ +~maxInput~+  | The maximum voltage expected at the input port.<span class="arg-default">This defaults to 10. </span>                               |
+| /~float~/ +~minOutput~+ | The minimum value of the float mapped into the setter.<span class="arg-default">This defaults to 0. </span>                         |
+| /~float~/ +~maxOutput~+ | The maximum value of the float mapped into the setter.<span class="arg-default">This defaults to 10.</span>                         |
+| /~bool~/ +~clamp~+      | Whether or not a voltage outside the mapping range should be hard-limited. <span class="arg-default">This defaults to false.</span> |
+| /~float~/ +~exponent~+  | The curve the property value is mapped against. <span class="arg-default">This defaults to 1.</span>                                |
+| /~float~/ +~smoothing~+ | The amount of damping performed on the property value. <span class="arg-default">This defaults to 3.</span>                         |
 
 If we need to use an input property's value outside of its setter,
 auto-implemented properties come in handy:
@@ -119,10 +121,8 @@ public class MyModule : UModule
 
 ** Outputs
 
-** The VFXModule Class
-
-** Module Prefabs
-
 ** Bundled Assets
 
+** Module Prefabs
+** The VFXModule Class
 ** Exporting Modules as Plugins
